@@ -9,10 +9,13 @@ from sklearn.svm import SVR
 
 train = pd.read_csv("train.csv")
 test = pd.read_csv("test.csv")
+
+
 # Reshaping train and test data
 total = train.isnull().sum().sort_values(ascending=False)
 percent = (train.isnull().sum() / train.isnull().count()).sort_values(ascending=False)
 missing_data = pd.concat([total, percent], axis=1, keys=['Total', 'Percent'])
+print(missing_data)
 train = train.drop((missing_data[missing_data['Total'] > 81]).index, 1)
 total_test = test.isnull().sum().sort_values(ascending=False)
 percent_test = (test.isnull().sum() / test.isnull().count()).sort_values(ascending=False)
