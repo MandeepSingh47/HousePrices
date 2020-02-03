@@ -109,12 +109,12 @@ ID = testdata['Id']
 testdata = pd.DataFrame(ID, columns=['Id'])
 test = sc_x.fit_transform(test)
 
-test_prediction = GBR_prediction.predict(test)
+test_prediction = GBR.predict(test)
 test_prediction = test_prediction.reshape(-1, 1)
 test_prediction = sc_y.inverse_transform(test_prediction)
 test_prediction = pd.DataFrame(test_prediction, columns=['SalePrice'])
 print(test_prediction)
 
 
-result = pd.concat([test, test_prediction], axis=1)
+result = pd.concat([testdata, test_prediction], axis=1)
 result.to_csv('Kaggle_Submission.csv', index=False)
